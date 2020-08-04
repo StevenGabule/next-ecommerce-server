@@ -1,0 +1,35 @@
+models:
+  Product:
+    name: string
+    description: longtext
+    short_description: text
+    price: decimal:8,2
+    avatar: string nullable
+    published_at: timestamp nullable
+
+  Cart:
+    user_id: id foreign:users
+    product_id: id foreign:pruducts.id
+    qty: integer
+    relationships:
+      hasMany: User, Product
+
+controllers:
+  Product:
+      index:
+        query: all
+        respond: product.show
+
+      store:
+        validate: name, description, short_description, price
+        save: product
+        respond: product.show
+
+      update:
+        validate: name, description, short_description, price
+        save: product
+        respond: product.show
+
+      destroy:
+        delete: product
+        respond: product.show

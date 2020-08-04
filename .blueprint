@@ -1,0 +1,16 @@
+created:
+    - database/migrations/2020_08_03_203157_create_products_table.php
+    - database/migrations/2020_08_03_203158_create_carts_table.php
+    - app/Product.php
+    - app/Cart.php
+    - database/factories/ProductFactory.php
+    - database/factories/CartFactory.php
+    - app/Http/Controllers/ProductController.php
+    - app/Http/Requests/ProductStoreRequest.php
+    - app/Http/Requests/ProductUpdateRequest.php
+    - tests/Feature/Http/Controllers/ProductControllerTest.php
+updated:
+    - routes/web.php
+models:
+    Product: { name: string, description: longtext, short_description: text, price: 'decimal:8,2', avatar: 'string nullable', published_at: 'timestamp nullable' }
+    Cart: { user_id: 'id foreign:users', product_id: 'id foreign:pruducts.id', qty: integer, relationships: { hasMany: 'User, Product' } }
